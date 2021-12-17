@@ -1,24 +1,10 @@
 # Clean ABAP
 
-> [**English**](CleanABAP.md)
-> &nbsp;·&nbsp;
-> [中文](CleanABAP_zh.md)
-> &nbsp;·&nbsp;
-> [Français](CleanABAP_fr.md)
-> &nbsp;·&nbsp;
-> [Deutsch](CleanABAP_de.md)
-> &nbsp;·&nbsp;
-> [日本語](CleanABAP_ja.md)
-> &nbsp;·&nbsp;
-> [Español](CleanABAP_es.md)
+This guide is an adoption of 
+[Clean ABAP SAP Styleguide]
+for ABAP
 
-This guide is an adoption of
-[Robert C. Martin's _Clean Code_]
-for [ABAP](https://en.wikipedia.org/wiki/ABAP).
-
-The [Cheat Sheet](cheat-sheet/CheatSheet.md) is a print-optimized version.
-
-[Robert C. Martin's _Clean Code_]: https://www.oreilly.com/library/view/clean-code/9780136083238/
+[Clean ABAP SAP Styleguide]: https://github.com/SAP/styleguides/blob/main/clean-abap/CleanABAP.md
 
 ## Content
 
@@ -271,107 +257,28 @@ especially [Comments](#comments), [Names](#names), and [Formatting](#formatting)
 can lead to near-religious disputes
 and should only be addressed by teams that already saw proof of Clean Code's positive effects.
 
-### How to Refactor Legacy Code
+### How to deal with Legacy Code
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [How to](#how-to) > [This section](#how-to-refactor-legacy-code)
 
-The topics [Booleans](#booleans), [Conditions](#conditions), [Ifs](#ifs),
-and [Methods](#methods) are most rewarding if you are working on a legacy project
-with tons of code that you cannot or do not want to change
-because they can be applied to new code without conflicts.
-
-The topic [Names](#names) is very demanding for legacy projects,
-as it may introduce a breach between old and new code,
-up to a degree where sections like
-[Avoid encodings, esp. Hungarian notation and prefixes](#avoid-encodings-esp-hungarian-notation-and-prefixes)
-are better ignored.
-
 Try not to mix different development styles within the same
-development object when carrying out a refactoring. If the
-legacy code contains only up-front declarations, and a complete
-refactoring into using inline declarations is not feasible, it
-is probably better to stick with the legacy style rather than
-mixing the two styles. There are several similar situations
+development object when carrying out changes. There are several situations
 where mixing styles could cause confusion, for example:
 
+- Mixing Naming Conventions (Hungarian Notation).
+- Mixing Procedural and Object Oriented Programming.
 - Mixing `REF TO` and `FIELD-SYMBOL` when looping.
-- Mixing `NEW` and `CREATE OBJECT` when calling a `CONSTRUCTOR`.
+- Mixing `NEW` and `CREATE OBJECT`. 
 - Mixing `RETURNING` and `EXPORTING` in the method signatures of
 methods only returning / exporting one parameter.
-
-We observed good results with a four-step plan for refactoring:
-
-1. Get the team aboard. Communicate and explain the new style,
-and get everybody on the project team to agree to it.
-You don't need to commit all guidelines at once, just start
-with an undisputed small subset and evolve from there.
-
-2. Follow the _boy scout rule_ to your daily work routine:
-_always leave the code you edit a little cleaner than you found it_.
-Don't obsess with this by sinking hours into "cleaning the campsite",
-just spend a couple of minutes extra and observe how the
-improvements accumulate over time.
-
-3. Build _clean islands_: from time to time, pick a small object or component and
-try to make it clean in all aspects. These islands demonstrate the benefit
-of what you're doing and form solidly tested home bases for further refactoring.
-
-4. Talk about it. No matter whether you set up old-school [Fagan code reviews](https://en.wikipedia.org/wiki/Fagan_inspection),
-hold info sessions, or form discussion boards in your favorite chat tool:
-you will need to talk about your experiences and learnings, to enable the
-team to grow a common understanding.
-
-### How to Check Automatically
-
-> [Clean ABAP](#clean-abap) > [Content](#content) > [How to](#how-to) > [This section](#how-to-check-automatically)
-
-[code pal for ABAP](https://github.com/SAP/code-pal-for-abap)
-provides a comprehensive suite of automatic checks for Clean ABAP.
-
-ABAP Test Cockpit, Code Inspector, Extended Check, and Checkman provide
-some checks that may help you find certain issues.
-
-[abapOpenChecks](https://github.com/larshp/abapOpenChecks),
-an Open Source collection of Code Inspector checks,
-also covers some of the described anti-patterns.
-
-[abaplint](https://github.com/abaplint/abaplint) is an open source reimplementation of the ABAP parser. It works without a SAP system and is meant to be used on code serialized using abapGit. It offers multiple integrations (GitHub Actions, Jenkins, text editors...), covers some of the antipatterns and can also be used to check formatting and code conventions.
-
-### How to Relate to Other Guides
-
-> [Clean ABAP](#clean-abap) > [Content](#content) > [How to](#how-to) > [This section](#how-to-relate-to-other-guides)
-
-Our guide follows the _spirit_ of Clean Code,
-meaning we adjusted some things to the ABAP programming language
-e.g. [Throw CX_STATIC_CHECK for manageable exceptions](#throw-cx_static_check-for-manageable-exceptions).
-
-Some facts are from the
-[ABAP Programming Guidelines](https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm?file=abenabap_pgl.htm),
-which this guide is mostly compatible to; deviations are indicated and always in the spirit of cleaner code.
-
-This guide also respects the
-[DSAG's Recommendations for ABAP Development](https://www.dsag.de/sites/default/files/2020-12/dsag_recommendation_abap_development.pdf),
-although we are more precise in most details.
-
-Since its publication, Clean ABAP has become a reference guide
-for many of SAP's in-house development teams,
-including the several hundred coders that work on S/4HANA.
 
 ### How to Disagree
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [How to](#how-to) > [This section](#how-to-disagree)
 
-We wrote this style guide for readers who are already acquainted with Clean Code or who are right now working on that,
-with a strong focus on how to apply Clean Code _specifically to ABAP_.
+This style guide it's a living document, it's not set on stone.
 
-Please mind that we therefore did not introduce all concepts in the same length and depth
-as the original book and related resources: these are still worth a read,
-especially if you disagree with things in here just because we didn't explain them very well.
-Use the links in the sections to read up on the background of our guidance.
-
-You are free to discuss and disagree with anything we say here.
-One of the pillars of Clean Code is that _the team rules_.
-Just be sure to give things a fair chance before you discard them.
+If you disagree or want to discuss anything that is written (or not) in this guide, please contact your assigned Lead Developer to talk about it and if needed we can modify/update.  
 
 [CONTRIBUTING.md](../CONTRIBUTING.md) suggests ways how you can change this guide or deviate from it in minor details.
 
@@ -405,8 +312,6 @@ CLASS /dirty/t005_reader ...
 
 [Do not attempt to fix bad names by comments.](#comments-are-no-excuse-for-bad-names)
 
-> Read more in _Chapter 2: Meaningful Names: Use Intention-Revealing Names_ of [Robert C. Martin's _Clean Code_].
-
 ### Prefer solution domain and problem domain terms
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Names](#names) > [This section](#prefer-solution-domain-and-problem-domain-terms)
@@ -424,9 +329,6 @@ In any case, do not attempt to make up your own language.
 We need to be able to exchange information between developers, product owners, partners and customers,
 so choose names that all of these can relate to without a customized dictionary.
 
-> Read more in _Chapter 2: Meaningful Names: Use Solution Domain Names_ and _[...]:
-> Use Problem Domain Names_ of [Robert C. Martin's _Clean Code_].
-
 ### Use plural
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Names](#names) > [This section](#use-plural)
@@ -437,11 +339,6 @@ Common tendency in the outside world is to use the plural for lists of things.
 We therefore recommend to prefer `countries` instead.
 
 > This advice primarily targets things like variables and properties.
-> For development objects, there may be competing patterns
-> that also make sense, for example the widely used convention
-> to name database tables ("transparent tables") in singular.
-
-> Read more in _Chapter 2: Meaningful Names: Use Intention-Revealing Names_ of [Robert C. Martin's _Clean Code_].
 
 ### Use pronounceable names
 
@@ -449,8 +346,6 @@ We therefore recommend to prefer `countries` instead.
 
 We think and talk a lot about objects, so use names that you can pronounce,
 for example prefer `detection_object_types` to something cryptic like `dobjt`.
-
-> Read more in _Chapter 2: Meaningful Names: Use Pronounceable Names_ of [Robert C. Martin's _Clean Code_]
 
 ### Avoid abbreviations
 
@@ -465,8 +360,6 @@ Abbreviating things may appear efficient at first glance, but becomes ambiguous 
 For example, does the "cust" in `cust` mean "customizing", "customer", or "custom"?
 All three are common in SAP applications.
 
-> Read more in _Chapter 2: Meaningful Names: Make Meaningful Distinctions_ of [Robert C. Martin's _Clean Code_].
-
 ### Use same abbreviations everywhere
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Names](#names) > [This section](#use-same-abbreviations-everywhere)
@@ -475,8 +368,6 @@ People will search for keywords to find relevant code.
 Support this by using the same abbreviation for the same thing.
 For example, always abbreviate "detection object type" to "dobjt"
 instead of mixing "dot", "dotype", "detobjtype" and so on.
-
-> Read more in _Chapter 2: Meaningful Names: Use Searchable Names_ of [Robert C. Martin's _Clean Code_].
 
 ### Use nouns for classes and verbs for methods
 
@@ -528,8 +419,6 @@ user_preferences          " instead of user_info
 response_time_in_seconds  " instead of response_time_variable
 ```
 
-> Read more in _Chapter 2: Meaningful Names: Make Meaningful Distinctions_ of [Robert C. Martin's _Clean Code_]
-
 ### Pick one word per concept
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Names](#names) > [This section](#pick-one-word-per-concept)
@@ -550,8 +439,6 @@ METHODS retrieve_that.
 METHODS query_those.
 ```
 
-> Read more in _Chapter 2: Meaningful Names: Pick One Word per Concept_ of [Robert C. Martin's _Clean Code_]
-
 ### Use pattern names only if you mean them
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Names](#names) > [This section](#use-pattern-names-only-if-you-mean-them)
@@ -567,8 +454,6 @@ The most common patterns include:
 [iterator](https://en.wikipedia.org/wiki/Iterator_pattern),
 [observer](https://en.wikipedia.org/wiki/Observer_pattern), and
 [strategy](https://en.wikipedia.org/wiki/Strategy_pattern).
-
-> Read more in _Chapter 2: Meaningful Names: Avoid Disinformation_ of [Robert C. Martin's _Clean Code_]
 
 ### Avoid encodings, esp. Hungarian notation and prefixes
 
@@ -623,9 +508,6 @@ Try to build things in a clean, object-oriented way.
 If something is too slow, make a performance measurement.
 Only then should you take a fact-based decision to discard selected rules.
 
-Some further thoughts, taken in part from Chapter 2 of
-[Martin Fowler's _Refactoring_](https://martinfowler.com/books/refactoring.html):
-
 In a typical application the majority of the runtime is spent in a very small proportion
 of the code. As little as 10% of the code can account for 90% of the runtime, and especially
 in ABAP a large proportion of runtime is likely to be database time.
@@ -655,6 +537,8 @@ FUNCTION check_business_partner [...].
   result = validator->validate( business_partners ).
 ENDFUNCTION.
 ```
+
+There is no need to "design" in OOP a small or simple scripts.
 
 > [Function Groups vs. Classes](sub-sections/FunctionGroupsVsClasses.md)
 > describes the differences in detail.
@@ -699,10 +583,6 @@ Many of the detailed rules below are just specific reiterations of this general 
 ### Avoid obsolete language elements
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Language](#language) > [This section](#avoid-obsolete-language-elements)
-
-When upgrading your ABAP version,
-make sure to check for obsolete language elements
-and refrain from using them.
 
 For example, the `@`-escaped "host" variables
 in the following statement make a little clearer
@@ -770,9 +650,6 @@ is clearer than
 IF abap_type = 'D'.
 ```
 
-> Read more in _Chapter 17: Smells and Heuristics: G25:
-> Replace Magic Numbers with Named Constants_ of [Robert C. Martin's _Clean Code_].
-
 ### Prefer enumeration classes to constants interfaces
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Constants](#constants) > [This section](#prefer-enumeration-classes-to-constants-interfaces)
@@ -816,8 +693,7 @@ ENDINTERFACE.
 > [Enumerations](sub-sections/Enumerations.md)
 > describes common enumeration patterns
 > and discusses their advantages and disadvantages.
->
-> Read more in _Chapter 17: Smells and Heuristics: J3: Constants versus Enums_ of [Robert C. Martin's _Clean Code_].
+
 
 ### If you don't use enumeration classes, group your constants
 
@@ -847,24 +723,6 @@ CONSTANTS:
   error        TYPE symsgty VALUE 'E',
   persisted    TYPE i       VALUE 2,
 ```
-
-The group also allows you group-wise access, for example for input validation:
-
-```ABAP
-DO.
-  ASSIGN COMPONENT sy-index OF STRUCTURE message_severity TO FIELD-SYMBOL(<constant>).
-  IF sy-subrc IS INITIAL.
-    IF input = <constant>.
-      DATA(is_valid) = abap_true.
-      RETURN.
-    ENDIF.
-  ELSE.
-    RETURN.
-  ENDIF.
-ENDDO.
-```
-
-> Read more in _Chapter 17: Smells and Heuristics: G27: Structure over Convention_ of [Robert C. Martin's _Clean Code_].
 
 ## Variables
 
@@ -899,8 +757,6 @@ METHOD do_something.
 ENDMETHOD.
 ```
 
-> Read more in _Chapter 5: Formatting: Vertical Distance: Variable Declarations_ of [Robert C. Martin's _Clean Code_].
-
 ### Don't declare inline in optional branches
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Variables](#variables) > [This section](#dont-declare-inline-in-optional-branches)
@@ -927,8 +783,6 @@ ELSE.
   value = 2.
 ENDIF.
 ```
-
-> Read more in _Chapter 5: Formatting: Vertical Distance: Variable Declarations_ of [Robert C. Martin's _Clean Code_].
 
 ### Do not chain up-front declarations
 
@@ -1063,8 +917,6 @@ or resort to `EMPTY KEY` if you don't need a key at all.
 DATA itab1 TYPE STANDARD TABLE OF row_type WITH EMPTY KEY.
 ```
 
-> Following [Horst Keller's blog on _Internal Tables with Empty Key_](https://blogs.sap.com/2013/06/27/abap-news-for-release-740-internal-tables-with-empty-key/)
-> 
 > **Caution:** `SORT` on internal tables with `EMPTY KEY` (without explicit sort fields) will not sort at all,
 > but syntax warnings are issued in case the key's emptiness can be determined statically.
 
@@ -1384,9 +1236,6 @@ ELSE.
   " only do something in the ELSE block, IF remains empty
 ENDIF.
 ```
-
-> Read more in _Chapter 17: Smells and Heuristics: G29: Avoid Negative Conditionals_ of [Robert C. Martin's _Clean Code_].
-
 ### Prefer IS NOT to NOT IS
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Conditions](#conditions) > [This section](#prefer-is-not-to-not-is)
@@ -1598,10 +1447,6 @@ DATA(is_valid) = matches( val     = class_name
                           pattern = '[A-Z][A-Z0-9_]{0,29}' ).
 ```
 
-> There seems to be a natural tendency to turn blind to the Don't-Repeat-Yourself (DRY) principle
-> when there are regular expressions around,
-> compare section _Chapter 17: Smells and Heuristics: General: G5: Duplication_ in [Robert C. Martin's _Clean Code_].
-
 ### Consider assembling complex regular expressions
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Regular expressions](#regular-expressions) > [This section](#consider-assembling-complex-regular-expressions)
@@ -1739,9 +1584,6 @@ Don't do that.
 
 ### Scope
 
-> [Clean ABAP](#clean-abap) > [Content](#content) > [Classes](#classes) > [This section](#scope)
-
-#### Global by default, local only where appropriate
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Classes](#classes) > [Scope](#scope) > [This section](#global-by-default-local-only-where-appropriate)
 
@@ -2807,7 +2649,7 @@ METHOD create_and_publish.
 ENDMETHOD.
 ```
 
-A reliable way to find out what the right level of abstraction is is this:
+A reliable way to find out what the right level of abstraction is this:
 Let the method's author explain what the method does in few, short words, without looking at the code.
 The bullets (s)he numbers are the sub-methods the method should call or the statements it should execute.
 
@@ -3253,11 +3095,6 @@ METHODS read_file
 This exception type _must_ be given in method signatures and _must_ be caught or forwarded to avoid syntax errors.
 It is therefore plain to see for the consumer and ensures that (s)he won't be surprised by an unexpected exception
 and will take care of reacting to the error situation.
-
-> This is in sync with the [ABAP Programming Guidelines](https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/abenexception_category_guidl.htm)
-> but contradicts [Robert C. Martin's _Clean Code_],
-> which recommends to prefer unchecked exceptions;
-> [Exceptions](sub-sections/Exceptions.md) explains why.
 
 #### Throw CX_NO_CHECK for usually unrecoverable situations
 
@@ -3780,8 +3617,6 @@ to avoid huge change lists and transport dependencies.
 Consider pretty-printing the complete development object
 in a separate Transport Request or Note.
 
-> Read more in _Chapter 5: Formatting: Team Rules_ of [Robert C. Martin's _Clean Code_].
-
 ### Use your Pretty Printer team settings
 
 > [Clean ABAP](#clean-abap) > [Content](#content) > [Formatting](#formatting) > [This section](#use-your-pretty-printer-team-settings)
@@ -3792,11 +3627,6 @@ _Menu_ > _Utilities_ > _Settings ..._ > _ABAP Editor_ > _Pretty Printer_.
 
 Set _Indent_ and _Convert Uppercase/Lowercase_ > _Uppercase Keyword_
 as agreed in your team.
-
-> [Upper vs. Lower Case](sub-sections/UpperVsLowerCase.md) explains
-> why we do not give clear guidance for the type case of keywords.
->
-> Read more in _Chapter 5: Formatting: Team Rules_ of [Robert C. Martin's _Clean Code_].
 
 ### No more than one statement per line
 
@@ -3934,8 +3764,6 @@ But leave things ragged that have nothing to do with each other:
 customizing_reader = fra_cust_obj_model_reader=>s_get_instance( ).
 hdb_access = fra_hdbr_access=>s_get_instance( ).
 ```
-
-> Read more in _Chapter 5: Formatting: Horizontal Alignment_ of [Robert C. Martin's _Clean Code_].
 
 ### Close brackets at line end
 
