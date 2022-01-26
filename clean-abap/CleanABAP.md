@@ -2,7 +2,7 @@
 
 This guide is an adoption of 
 [Clean ABAP SAP Styleguide]
-for ABAP for All the XMO Developers.
+for ABAP for all the XMO Developers.
 
 [Clean ABAP SAP Styleguide]: https://github.com/SAP/styleguides/blob/main/clean-abap/CleanABAP.md
 
